@@ -1,13 +1,10 @@
-import React from "react"
+import React, { lazy , Suspense} from "react"
 import './App.scss';
 import { BrowserRouter , Switch , Route , Redirect } from "react-router-dom"
 
 
-import Homepage from "./pages/homepage/homepage.component"
-import ShopPage from "./pages/shop/shop.component"
-import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component"
-import CheckoutPage from "./pages/checkout/checkout.component"
-
+import LoadingPage from "./pages/loading/loading.component";
+import ErrorBoundary from "./components/error-boundaries/error-boundaries";
 
 import Header from "./components/header/header.component"
 import { connect } from "react-redux"
@@ -15,6 +12,11 @@ import { selectCurrentUser } from "./redux/user/user.selector"
 import { selectShopCollectionsForPreview } from "./redux/shop/shop.selector"
 import { checkUserSession } from "./redux/user/userAction"
 
+
+const Homepage = lazy(() => import("./pages/homepage/homepage.component"))
+const ShopPage = lazy(() => import("./pages/shop/shop.component"))
+const SignInAndSignUpPage = lazy(() => import("./pages/sign-in-and-sign-up/sign-in-and-sign-up.component"))
+const CheckoutPage = lazy(() => import("./pages/checkout/checkout.component"))
 
  class AppRouter extends React.Component {
     async componentDidMount() {
@@ -29,10 +31,14 @@ import { checkUserSession } from "./redux/user/userAction"
         <div>
           <Header />
           <Switch>
-            <Route exact path="/" component={Homepage} />
-            <Route path="/shop" component={ShopPage} />
-            <Route exact path="/checkout" component={CheckoutPage} />
-            <Route exact path="/signin" render={() => this.props.user ? (<Redirect to="/" />) : (<SignInAndSignUpPage />)}/>
+            <ErrorBoundary >
+              <Suspense fallback={<LoadingPage />}>
+                <Route exact path="/" component={Homepage} />
+                <Route path="/shop" component={ShopPage} />
+                <Route exact path="/checkout" component={CheckoutPage} />
+                <Route exact path="/signin" render={() => this.props.user ? (<Redirect to="/" />) : (<SignInAndSignUpPage />)} />
+              </Suspense>
+            </ErrorBoundary> 
           </Switch>
         </div>
       </BrowserRouter>
