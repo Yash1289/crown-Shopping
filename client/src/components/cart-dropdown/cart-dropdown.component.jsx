@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Profiler} from "react"
 import CustomButton from "../custom-button/custom-button.component"
 import CartItem from "../cart-item/cart-item.component"
 import { connect } from "react-redux"
@@ -12,7 +12,15 @@ const CartDropdown = ({ cartItems , history , toggleCart}) => (
         <div className="cart-items" >
         { 
             cartItems.length ?
-            cartItems.map((cartItem) => <CartItem key={cartItem.id} item={cartItem} /> ) :
+                    cartItems.map((cartItem) => 
+                    /* <Profiler key={cartItem.id} id="kartItem" onRender={(id , phase, actualDuration) => console.log({
+                        id ,
+                        phase, 
+                        actualDuration
+                    })}> */
+                        <CartItem key={cartItem.id} item={cartItem} />
+                    /* </Profiler>  */
+                    ) :
             <span className="empty-message">Your cart is empty</span>
         }
         </div>

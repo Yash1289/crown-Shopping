@@ -1,4 +1,4 @@
-import React from "react"
+import React,{Profiler} from "react"
 import "./checkout.styles.scss"
 
 import { connect } from "react-redux"
@@ -26,7 +26,12 @@ const CheckoutPage = ({ cartItems , cartTotal}) => (
             </div>
         </div> 
         {
-            cartItems.map((cartItem) => <CheckoutItem key={cartItem.id} cartItem={cartItem} />)
+            cartItems.map((cartItem) => <Profiler key={cartItem.id} id="CekOutItem" onRender={(id , phase, actualDuration) => console.log({
+                        id ,
+                        phase, 
+                        actualDuration
+                    })}>  <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+                 </Profiler>  )
         }
         <div className='total'>TOTAL: ₹{cartTotal}</div>
         <div className="test-warning">

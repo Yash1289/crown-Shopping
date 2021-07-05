@@ -9,7 +9,7 @@ import { checkUserSession }   from './redux/user/userAction';
 import { persistStore } from "redux-persist";
 import LoadingPage from './pages/loading/loading.component';
 
-
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const persistor = persistStore(store) 
 
@@ -34,6 +34,6 @@ const timerId = setInterval(() => {
   }
 } , 500);
 
-
+serviceWorkerRegistration.register();
 
 
