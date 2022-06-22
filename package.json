@@ -1,7 +1,6 @@
 {
   "name": "crwn-clothing-server",
   "version": "1.0.0",
-  ,
   "scripts": {
     "client": "cd client && npm run start",
     "server": "nodemon server.js",
