@@ -1,0 +1,26 @@
+.contact-us{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+  
+    @media screen and (max-width: 800px) {
+          padding: 0 0.8rem;
+      }
+  
+    .title {
+      margin: 10px 0;
+    }
+  
+    .buttons .custom-button{
+      @media screen and (max-width:800px) {
+       width: 100%;
+      }
+    }
+  }
+  
+  .flash{
+      color: #f44336;
+      text-align: center;
+      width: 100%;
+      font-weight: bold;
+  }

@@ -1,0 +1,12 @@
+.contact-us-page {
+    width: 850px;
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
+  
+      @media screen and (max-width: 800px) {
+      width: unset;
+      align-items: center;
+      }
+  }
+  

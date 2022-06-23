@@ -17,6 +17,8 @@ const Homepage = lazy(() => import("./pages/homepage/homepage.component"))
 const ShopPage = lazy(() => import("./pages/shop/shop.component"))
 const SignInAndSignUpPage = lazy(() => import("./pages/sign-in-and-sign-up/sign-in-and-sign-up.component"))
 const CheckoutPage = lazy(() => import("./pages/checkout/checkout.component"))
+const NotFoundPage = lazy(() => import("./pages/notFound/notFound.jsx"))
+const ContactUsPage = lazy(() => import("./pages/contactusPage/contactusPage.component"))
 
  class AppRouter extends React.Component {
     async componentDidMount() {
@@ -30,16 +32,18 @@ const CheckoutPage = lazy(() => import("./pages/checkout/checkout.component"))
       <BrowserRouter>
         <div>
           <Header />
-          <Switch>
-            <ErrorBoundary >
-              <Suspense fallback={<LoadingPage />}>
+           <ErrorBoundary >
+             <Suspense fallback={<LoadingPage />}>
+              <Switch>
                 <Route exact path="/" component={Homepage} />
                 <Route path="/shop" component={ShopPage} />
                 <Route exact path="/checkout" component={CheckoutPage} />
+                <Route exact path="/contactus" component={ContactUsPage} />
                 <Route exact path="/signin" render={() => this.props.user ? (<Redirect to="/" />) : (<SignInAndSignUpPage />)} />
-              </Suspense>
-            </ErrorBoundary> 
-          </Switch>
+                <Route exact path="*" component={NotFoundPage} />
+              </Switch>
+            </Suspense>
+          </ErrorBoundary> 
         </div>
       </BrowserRouter>
     )
