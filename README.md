@@ -52,7 +52,7 @@ Start the frontend server
 ## Screenshots
 
 ![App Screenshot](https://i.ibb.co/9YDxZsn/dashboard.png)
-![App Screenshot](https://i.ibb.co/yhzZMjf/dashboard-chekcout.png)
+![App Screenshot](https://i.ibb.co/TKQ7n3v/dashboard-chekcout.png)
 ![App Screenshot](https://i.ibb.co/z7XB9xW/checkout-page.png)
 ![App Screenshot](https://i.ibb.co/5xRDGct/payment-page.png)
 
